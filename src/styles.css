@@ -2,5 +2,14 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 body {
-    background-color: #cfcac9;
-  }
+    background-color: #eeeeee;
+}
+
+h2::after{
+    content: '';
+    display: block;
+    height: 1.5px;
+    width: 100px;
+    background-color: black;
+    margin: 5px auto 30px;
+}

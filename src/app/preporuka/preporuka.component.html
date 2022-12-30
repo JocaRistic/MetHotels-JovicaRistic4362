@@ -1,0 +1,17 @@
+<section id="preporuka" class="py-5">
+    <div class="container">
+        <h2 class="text-center">Preporuke</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" *ngFor="let preporuka of listaPreporuka">
+                <div class="card h-100">
+                    <img src="{{ preporuka.slika }}" class="card-img-top" alt="Slika nije ucitana">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ preporuka.naziv }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ preporuka.lokacija }}</h6>
+                        <p class="card-text">{{ preporuka.opis }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    

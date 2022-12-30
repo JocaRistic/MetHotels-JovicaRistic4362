@@ -1,1 +1,32 @@
-<app-smestaj></app-smestaj>
+<app-bar></app-bar>
+<app-smestaj (smestajToAdd)="addSmestaj($event)"></app-smestaj>
+<section id="tabela">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Lista smestaja</h2>
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Broj smestaja</th>
+                            <th>Broj kreveta</th>
+                            <th>Cena</th>
+                            <th>Ocena</th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let smestaj of listaSmestaja">
+                            <th>{{smestaj.brojSmestaja}}</th>
+                            <td>{{smestaj.brojKreveta}}</td>
+                            <td>{{smestaj.cena}} $</td>
+                            <td>{{smestaj.ocena}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</section>
+<app-ponuda [smestaji]="listaSmestaja"></app-ponuda>
+<app-preporuka></app-preporuka>
+<app-o-nama></app-o-nama>
