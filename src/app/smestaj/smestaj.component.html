@@ -1,0 +1,59 @@
+<section id="smestaj" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Dodavanje smestaja</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="brojSmestaja" class="form-label">Broj smestaja:</label>
+                        <input type="text" class="form-control" id="brojSmestaja" name="brojSmestaja" #brojSmestaja>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brojKreveta" class="form-label">Broj kreveta:</label>
+                        <input type="text" class="form-control" id="brojKreveta" name="brojKreveta" #brojKreveta>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cena" class="form-label">Cena smestaja:</label>
+                        <input type="text" class="form-control" id="cena" name="cena" #cena>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ocena" class="form-label">Ocena smestaja:</label>
+                        <input type="text" class="form-control" id="ocena" name="ocena" #ocena>
+                    </div>
+                    <div class="mb-3">
+                        <label for="slika" class="form-label">Putanja slike smestaja:</label>
+                        <input type="text" class="form-control" id="slika" name="slika" #slika>
+                    </div>
+                    <button type="submit" class="btn btn-primary" (click)="dodajSmestaj(brojSmestaja, brojKreveta, cena, ocena, slika)">Dodaj smestaj</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="tabela">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Lista smestaja</h2>
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Broj smestaja</th>
+                            <th>Broj kreveta</th>
+                            <th>Cena</th>
+                            <th>Ocena</th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let smestaj of listaSmestaja">
+                            <th>{{smestaj.brojSmestaja}}</th>
+                            <td>{{smestaj.brojKreveta}}</td>
+                            <td>{{smestaj.cena}} $</td>
+                            <td>{{smestaj.ocena}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</section>
