@@ -5,3 +5,8 @@ form {
     background-color: #dfdfdf;
     border-radius: 8px;
 }
+
+.error-msg{
+    color: crimson;
+    font-size: 14px;
+}

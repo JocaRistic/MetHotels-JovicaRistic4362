@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { SmestajComponent } from './add-smestaj-form/add-smestaj-form.component';
@@ -7,6 +8,7 @@ import { PonudaComponent } from './ponuda/ponuda.component';
 import { PreporukaComponent } from './preporuka/preporuka.component';
 import { ONamaComponent } from './o-nama/o-nama.component';
 import { BarComponent } from './bar/bar.component';
+import { PonudaSmestajCardComponent } from './ponuda-smestaj-card/ponuda-smestaj-card.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +17,11 @@ import { BarComponent } from './bar/bar.component';
     PonudaComponent,
     PreporukaComponent,
     ONamaComponent,
-    BarComponent
+    BarComponent,
+    PonudaSmestajCardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

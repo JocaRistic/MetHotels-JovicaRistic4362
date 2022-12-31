@@ -3,28 +3,70 @@
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-center">Dodavanje smestaja</h2>
-                <form>
+                <form [formGroup]="smestajForma" (ngSubmit)="dodajSmestaj(smestajForma.value)">
                     <div class="mb-3">
                         <label for="brojSmestaja" class="form-label">Broj smestaja:</label>
-                        <input type="text" class="form-control" id="brojSmestaja" name="brojSmestaja" #brojSmestaja>
+                        <input type="text" class="form-control" id="brojSmestaja" name="brojSmestaja" formControlName="brojSmestaja">
+                        <div *ngIf="smestajForma.controls['brojSmestaja'].invalid && (smestajForma.controls['brojSmestaja'].dirty || smestajForma.controls['brojSmestaja'].touched)"
+                        class="error-msg">
+                            <div *ngIf="$any(smestajForma.controls['brojSmestaja']).errors.required">
+                                Broj smestaja je obavezno polje
+                            </div>
+                            <div *ngIf="$any(smestajForma.controls['brojSmestaja']).errors.brojValidator">
+                                Polje broj smestaja mora biti broj
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="brojKreveta" class="form-label">Broj kreveta:</label>
-                        <input type="text" class="form-control" id="brojKreveta" name="brojKreveta" #brojKreveta>
+                        <input type="text" class="form-control" id="brojKreveta" name="brojKreveta" formControlName="brojKreveta">
+                        <div *ngIf="smestajForma.controls['brojKreveta'].invalid && (smestajForma.controls['brojKreveta'].dirty || smestajForma.controls['brojKreveta'].touched)"
+                        class="error-msg">
+                            <div *ngIf="$any(smestajForma.controls['brojKreveta']).errors.required">
+                                Broj kreveta je obavezno polje
+                            </div>
+                            <div *ngIf="$any(smestajForma.controls['brojKreveta']).errors.brojValidator">
+                                Polje broj smestaja mora biti broj
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="cena" class="form-label">Cena smestaja:</label>
-                        <input type="text" class="form-control" id="cena" name="cena" #cena>
+                        <input type="text" class="form-control" id="cena" name="cena" formControlName="cena">
+                        <div *ngIf="smestajForma.controls['cena'].invalid && (smestajForma.controls['cena'].dirty || smestajForma.controls['cena'].touched)"
+                        class="error-msg">
+                            <div *ngIf="$any(smestajForma.controls['cena']).errors.required">
+                                Cena je obavezno polje
+                            </div>
+                            <div *ngIf="$any(smestajForma.controls['cena']).errors.decimalniBrojValidator">
+                                Polje cena mora biti broj
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="ocena" class="form-label">Ocena smestaja:</label>
-                        <input type="text" class="form-control" id="ocena" name="ocena" #ocena>
+                        <input type="text" class="form-control" id="ocena" name="ocena" formControlName="ocena">
+                        <div *ngIf="smestajForma.controls['ocena'].invalid && (smestajForma.controls['ocena'].dirty || smestajForma.controls['ocena'].touched)"
+                        class="error-msg">
+                            <div *ngIf="$any(smestajForma.controls['ocena']).errors.required">
+                                Ocena je obavezno polje
+                            </div>
+                            <div *ngIf="$any(smestajForma.controls['ocena']).errors.decimalniBrojValidator">
+                                Polje ocena mora biti broj
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="slika" class="form-label">Putanja slike smestaja:</label>
-                        <input type="text" class="form-control" id="slika" name="slika" #slika>
+                        <input type="text" class="form-control" id="slika" name="slika" formControlName="slika">
+                        <div *ngIf="smestajForma.controls['slika'].invalid && (smestajForma.controls['slika'].dirty || smestajForma.controls['slika'].touched)"
+                        class="error-msg">
+                            <div *ngIf="$any(smestajForma.controls['slika']).errors.required">
+                                Slika je obavezno polje
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" (click)="dodajSmestaj(brojSmestaja, brojKreveta, cena, ocena, slika)">Dodaj smestaj</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!smestajForma.valid">Dodaj smestaj</button>
                 </form>
             </div>
         </div>

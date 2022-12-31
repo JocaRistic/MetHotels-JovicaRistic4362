@@ -2,22 +2,7 @@
     <div class="container">
         <h2 class="text-center">Ponuda smestaja</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col" *ngFor="let smestaj of smestaji">
-                <div class="card h-100">
-                    <img src="{{ smestaj.slika }}" class="card-img-top" alt="Slika nije ucitana">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Broj sobe {{ smestaj.brojSmestaja }}</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Broj kreveta: {{ smestaj.brojKreveta }}</li>
-                            <li class="list-group-item">Ocena: {{ smestaj.ocena }}</li>
-                            <li class="list-group-item">Cena: {{ smestaj.cena }} $</li>
-                        </ul>
-                        <!--<div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-sm">Rezervisi</button>
-                        </div>-->
-                    </div>
-                </div>
-            </div>
+            <app-ponuda-smestaj-card *ngFor="let smestaj of smestaji" [smestaj]="smestaj"></app-ponuda-smestaj-card>
         </div>
     </div>
 </section>    
