@@ -22,10 +22,13 @@
                     </div>
                 </li>
                 <li class="list-group-item" *ngIf="cenaDodatnihUsluga > 0">Cena dodatnih usluga: {{ cenaDodatnihUsluga }} EUR / night</li>
+                <li class="list-group-item">
+                    Broj nocenja: <input type="number" id="brojNocenja" min="1" value="1" #brojNocenja>
+                </li>
             </ul>
             
             <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-sm" (click)="rezervacija()">Rezervisi</button>
+                <button type="submit" class="btn btn-primary btn-sm" (click)="rezervacija(brojNocenja.value)">Rezervisi</button>
             </div>
         </div>
     </div>

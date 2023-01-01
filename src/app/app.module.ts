@@ -9,6 +9,7 @@ import { PreporukaComponent } from './preporuka/preporuka.component';
 import { ONamaComponent } from './o-nama/o-nama.component';
 import { BarComponent } from './bar/bar.component';
 import { PonudaSmestajCardComponent } from './ponuda-smestaj-card/ponuda-smestaj-card.component';
+import { RoomService } from './services/room.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { PonudaSmestajCardComponent } from './ponuda-smestaj-card/ponuda-smestaj
   imports: [
     BrowserModule, ReactiveFormsModule
   ],
-  providers: [],
+  providers: [RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

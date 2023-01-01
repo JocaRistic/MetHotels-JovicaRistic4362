@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Smestaj } from '../models/smestaj';
+import { RoomService } from '../services/room.service';
 
 @Component({
   selector: 'app-ponuda-smestaj-card',
@@ -11,7 +12,7 @@ export class PonudaSmestajCardComponent {
   cenaDodatnihUsluga: number;
   dodatneUsluge: String[];
 
-  constructor(){
+  constructor(private roomService: RoomService){
     this.cenaDodatnihUsluga = 0;
     this.dodatneUsluge = [];
   }
@@ -53,10 +54,13 @@ export class PonudaSmestajCardComponent {
   }
 
   //ukoliko se klikne na dugme za rezervaciju otvara se popup za potvrdu rezervacije 
-  rezervacija(){
-      let ukupnaCena = this.smestaj.cena + this.cenaDodatnihUsluga;
-      if (confirm(`Ukupna cena: ${ukupnaCena} EUR / night.\nDa li zelite da potvrdite rezervaciju?`)) {
+  rezervacija(brojNocenja: any){
+      let cenaNocenjaSaUslugama: number = this.smestaj.cena + this.cenaDodatnihUsluga;
+      let ukupnaCena: number = this.roomService.getPrice(Number(brojNocenja), cenaNocenjaSaUslugama);
+      if (confirm(`Ukupna cena za ${brojNocenja} nocenja iznosi: ${ukupnaCena} EUR.\nDa li zelite da potvrdite rezervaciju?`)) {
+        alert(`Uspesna rezervacija.\n Cena: ${ukupnaCena} EUR \n Broj nocenja: ${brojNocenja}`)
       } else {
+        alert('Rezervacija otkazana.')
       }
   }
 }
