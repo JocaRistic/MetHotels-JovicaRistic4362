@@ -1,0 +1,28 @@
+{
+  "smestaji": [
+    {
+      "id": 1,
+      "brojSmestaja": 101,
+      "brojKreveta": 2,
+      "cena": 300,
+      "ocena": 9.5,
+      "slika": "https://cf.bstatic.com/xdata/images/hotel/270x200/273821265.webp?k=54a9cbe13a34cd98ab6ae409b20e041f98001a46da8de1e0a1fed763191a595c&o="
+    },
+    {
+      "id": 2,
+      "brojSmestaja": 102,
+      "brojKreveta": 1,
+      "cena": 150,
+      "ocena": 8,
+      "slika": "https://cf.bstatic.com/xdata/images/hotel/square600/332039571.webp?k=adc1c4b705291a8f395dea3f66ea47741860dc9cefe55c7622e9e776fd63f1b5&o=&s=1"
+    },
+    {
+      "id": 3,
+      "brojSmestaja": 103,
+      "brojKreveta": 2,
+      "cena": 200,
+      "ocena": 7.4,
+      "slika": "https://cf.bstatic.com/xdata/images/hotel/square600/308525513.webp?k=9a353e1a2d0b435c72e8b6fd722110722fa9104c6489b9298aadbd8984ec9a49&o=&s=1"
+    }
+  ]
+}

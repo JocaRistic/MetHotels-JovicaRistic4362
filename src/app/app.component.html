@@ -12,6 +12,7 @@
                             <th>Broj kreveta</th>
                             <th>Cena</th>
                             <th>Ocena</th>
+                            <th>Operacije</th>
                         </tr>    
                     </thead>
                     <tbody>
@@ -20,6 +21,10 @@
                             <td>{{smestaj.brojKreveta}}</td>
                             <td>{{smestaj.cena}} $</td>
                             <td>{{smestaj.ocena}}</td>
+                            <td>
+                                <button type="submit" class="btn btn-danger btn-sm" 
+                                (click)="deleteSmestaj(smestaj)">Obrisi</button>
+                            </td>
                         </tr>
                     </tbody>
                   </table>
