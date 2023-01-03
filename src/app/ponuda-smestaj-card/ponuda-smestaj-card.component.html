@@ -1,35 +1,33 @@
-<div class="col">
-    <div class="card h-100">
-        <img src="{{ smestaj.slika }}" class="card-img-top" alt="Slika nije ucitana">
-        <div class="card-body">
-            <h5 class="card-title text-center">Broj sobe {{ smestaj.brojSmestaja }}</h5>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Broj kreveta: {{ smestaj.brojKreveta }}</li>
-                <li class="list-group-item">Ocena: {{ smestaj.ocena }}</li>
-                <li class="list-group-item">Cena: {{ smestaj.cena }} EUR / night</li>
-                <li class="list-group-item">
-                    <div>
-                        <input type="checkbox" (click)="addUslugaKlima()" [checked]="dodatneUsluge.indexOf('klima') > -1">
-                        <label [style.margin-left.px]="5">Dodatna usluga: Klima</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" (click)="addUslugaMinibar()" [checked]="dodatneUsluge.indexOf('minibar') > -1">
-                        <label [style.margin-left.px]="5">Dodatna usluga: Mini bar</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" (click)="addUslugaSauna()" [checked]="dodatneUsluge.indexOf('sauna') > -1">
-                        <label [style.margin-left.px]="5">Dodatna usluga: Sauna</label>
-                    </div>
-                </li>
-                <li class="list-group-item" *ngIf="cenaDodatnihUsluga > 0">Cena dodatnih usluga: {{ cenaDodatnihUsluga }} EUR / night</li>
-                <li class="list-group-item">
-                    Broj nocenja: <input type="number" id="brojNocenja" min="1" value="1" #brojNocenja>
-                </li>
-            </ul>
-            
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-sm" (click)="rezervacija(brojNocenja.value)">Rezervisi</button>
-            </div>
+<div class="card h-100">
+    <h2 class="text-center">Pregled pojedinacne sobe</h2>
+    <img src="{{ smestaj.slika }}" class="card-img-top img-fluid" alt="Slika nije ucitana">
+    <div class="card-body">
+        <h5 class="card-title text-center">Broj sobe {{ smestaj.brojSmestaja }}</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Broj kreveta: {{ smestaj.brojKreveta }}</li>
+            <li class="list-group-item">Ocena: {{ smestaj.ocena }}</li>
+            <li class="list-group-item">Cena: {{ smestaj.cena }} EUR / night</li>
+            <li class="list-group-item">
+                <div>
+                    <input type="checkbox" (click)="addUslugaKlima()" [checked]="dodatneUsluge.indexOf('klima') > -1">
+                    <label [style.margin-left.px]="5">Dodatna usluga: Klima</label>
+                </div>
+                <div>
+                    <input type="checkbox" (click)="addUslugaMinibar()" [checked]="dodatneUsluge.indexOf('minibar') > -1">
+                    <label [style.margin-left.px]="5">Dodatna usluga: Mini bar</label>
+                </div>
+                <div>
+                    <input type="checkbox" (click)="addUslugaSauna()" [checked]="dodatneUsluge.indexOf('sauna') > -1">
+                    <label [style.margin-left.px]="5">Dodatna usluga: Sauna</label>
+                </div>
+            </li>
+            <li class="list-group-item" *ngIf="cenaDodatnihUsluga > 0">Cena dodatnih usluga: {{ cenaDodatnihUsluga }} EUR / night</li>
+            <li class="list-group-item">
+                Broj nocenja: <input type="number" id="brojNocenja" min="1" value="1" #brojNocenja>
+            </li>
+        </ul>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" (click)="rezervacija(brojNocenja.value)">Rezervisi</button>
         </div>
     </div>
 </div>

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Smestaj } from '../models/smestaj';
+import { PregledSobeService } from '../services/pregled-sobe.service';
 import { RoomService } from '../services/room.service';
 
 @Component({
@@ -8,13 +10,17 @@ import { RoomService } from '../services/room.service';
   styleUrls: ['./ponuda-smestaj-card.component.css']
 })
 export class PonudaSmestajCardComponent {
-  @Input() smestaj: Smestaj;
+  smestaj: Smestaj;
   cenaDodatnihUsluga: number;
   dodatneUsluge: String[];
 
-  constructor(private roomService: RoomService){
+  id: number;
+
+  constructor(private route: ActivatedRoute, private roomService: RoomService, private pregledSobe: PregledSobeService){
     this.cenaDodatnihUsluga = 0;
     this.dodatneUsluge = [];
+    route.params.subscribe(params => this.id = params['id']);
+    this.pregledSobe.getSmestaj(this.id).subscribe(data => this.smestaj = data);
   }
 
   //ukoliko se cekira klima kao dodatna usluga cena dodatnih usluga se povecava za 15e

@@ -20,8 +20,8 @@ export class SmestajCrudService {
   }
 
   //citanje nekog smestaja u tok podataka
-  public getSmestaj(brojSmestaja: number) : Observable<Smestaj> {
-    return this._httpClient.get(this.baseURL + '/' + brojSmestaja).pipe(
+  public getSmestaj(id?: number) : Observable<Smestaj> {
+    return this._httpClient.get(this.baseURL + '/' + id).pipe(
       map((data: any) => this._createSmestajFromObject(data)),
     );
   }

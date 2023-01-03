@@ -13,13 +13,15 @@ import { PonudaSmestajCardComponent } from './ponuda-smestaj-card/ponuda-smestaj
 import { RoomService } from './services/room.service';
 import { SmestajCrudService } from './services/smestaj-crud.service';
 import { Routes, RouterModule } from '@angular/router';
+import { PregledSobeService } from './services/pregled-sobe.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dodavanje', pathMatch: 'full' },
   { path: 'dodavanje', component: SmestajComponent },
   { path: 'ponuda', component: PonudaComponent },
   { path: 'preporuka', component: PreporukaComponent },
-  { path: 'onama', component: ONamaComponent}
+  { path: 'onama', component: ONamaComponent},
+  { path: 'smestaj/:id', component: PonudaSmestajCardComponent }
 ]
 
 @NgModule({
@@ -40,7 +42,8 @@ const routes: Routes = [
   ],
   providers: [
     RoomService,
-    SmestajCrudService
+    SmestajCrudService,
+    PregledSobeService
   ],
   bootstrap: [AppComponent]
 })
