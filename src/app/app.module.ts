@@ -12,6 +12,15 @@ import { BarComponent } from './bar/bar.component';
 import { PonudaSmestajCardComponent } from './ponuda-smestaj-card/ponuda-smestaj-card.component';
 import { RoomService } from './services/room.service';
 import { SmestajCrudService } from './services/smestaj-crud.service';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'dodavanje', pathMatch: 'full' },
+  { path: 'dodavanje', component: SmestajComponent },
+  { path: 'ponuda', component: PonudaComponent },
+  { path: 'preporuka', component: PreporukaComponent },
+  { path: 'onama', component: ONamaComponent}
+]
 
 @NgModule({
   declarations: [
@@ -26,7 +35,8 @@ import { SmestajCrudService } from './services/smestaj-crud.service';
   imports: [
     BrowserModule, 
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     RoomService,

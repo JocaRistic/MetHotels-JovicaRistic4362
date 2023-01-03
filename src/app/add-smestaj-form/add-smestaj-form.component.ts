@@ -1,6 +1,7 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Smestaj } from '../models/smestaj';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { SmestajCrudService } from '../services/smestaj-crud.service';
 
 @Component({
   selector: 'app-smestaj',
@@ -8,11 +9,13 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./add-smestaj-form.component.css']
 })
 export class SmestajComponent implements OnInit{
-  @Output() smestajToAdd: EventEmitter<Smestaj>;
+  listaSmestaja: Smestaj[];
   smestajForma: FormGroup;
 
-  constructor(private fb: FormBuilder){
-    this.smestajToAdd = new EventEmitter<Smestaj>;
+  constructor(private fb: FormBuilder, private _smestajCrudService: SmestajCrudService){
+    this._smestajCrudService.getSmestaji().subscribe(
+      (data) => this.listaSmestaja = data
+    );
   }
 
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class SmestajComponent implements OnInit{
 
   //funkcija emituje objekat tipa Smestaj sa podacima unetim u formu
   dodajSmestaj(value: string){
-    this.smestajToAdd.emit(new Smestaj(parseInt(this.smestajForma.controls['brojSmestaja'].value), parseInt(this.smestajForma.controls['brojKreveta'].value), parseFloat(this.smestajForma.controls['cena'].value), parseFloat(this.smestajForma.controls['ocena'].value), this.smestajForma.controls['slika'].value))
+    this.createSmestaj(new Smestaj(parseInt(this.smestajForma.controls['brojSmestaja'].value), parseInt(this.smestajForma.controls['brojKreveta'].value), parseFloat(this.smestajForma.controls['cena'].value), parseFloat(this.smestajForma.controls['ocena'].value), this.smestajForma.controls['slika'].value))
 
     this.smestajForma.controls['brojSmestaja'].setValue('');
     this.smestajForma.controls['brojKreveta'].setValue('');
@@ -42,6 +45,28 @@ export class SmestajComponent implements OnInit{
     this.smestajForma.controls['slika'].setValue('');
 
     return false;
+  }
+
+  //metod poziva funkciju za dodavanje novog smestaja u bazu iz servisa i dodaje smestaj u listu
+  createSmestaj(smestaj: Smestaj) {
+    this._smestajCrudService.createSmestaj(smestaj).subscribe((data) => {
+      this.listaSmestaja.push(data);
+      alert('Smestaj je uspesno dodat.');
+    })
+  }
+
+  //metod poziva funkciju za brisanje smestaja iz baze i ukoliko je obrisan poziva fju za brisanje smestaja iz liste
+  deleteSmestaj(smestaj: Smestaj) {
+    this._smestajCrudService.deleteSmestaj(smestaj.id).subscribe((data) => {
+      this.removeSmestajFromList(smestaj.id);
+      alert('Smestaj je uspesno obrisan');
+    })
+  }
+
+  //brisanje smestaja iz liste
+  private removeSmestajFromList(id?: number) {
+    let ind = this.listaSmestaja.findIndex(smestaj => smestaj.id == id);
+    this.listaSmestaja.splice(ind, 1);
   }
 
   //proverava da li je broj
