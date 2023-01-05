@@ -72,6 +72,7 @@
         </div>
     </div>
 </section>
+
 <section id="tabela">
     <div class="container">
         <div class="row">
@@ -88,7 +89,7 @@
                         </tr>    
                     </thead>
                     <tbody>
-                        <tr *ngFor="let smestaj of listaSmestaja">
+                        <tr *ngFor="let smestaj of smestaji$ | async">
                             <th>{{smestaj.brojSmestaja}}</th>
                             <td>{{smestaj.brojKreveta}}</td>
                             <td>{{smestaj.cena}} $</td>

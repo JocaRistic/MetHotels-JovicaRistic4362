@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects'
 
 import { AppComponent } from './app.component';
 import { SmestajComponent } from './add-smestaj-form/add-smestaj-form.component';
@@ -14,6 +16,8 @@ import { RoomService } from './services/room.service';
 import { SmestajCrudService } from './services/smestaj-crud.service';
 import { Routes, RouterModule } from '@angular/router';
 import { PregledSobeService } from './services/pregled-sobe.service';
+import { appReducers } from './store/state/app.state';
+import { SmestajEffect } from './store/effects/smestaj.effects';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dodavanje', pathMatch: 'full' },
@@ -38,7 +42,9 @@ const routes: Routes = [
     BrowserModule, 
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([SmestajEffect]),
   ],
   providers: [
     RoomService,

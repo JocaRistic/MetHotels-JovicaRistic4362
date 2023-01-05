@@ -16,7 +16,7 @@ export class SmestajCrudService {
 
   //citanje liste smestaja u tok podataka
   public getSmestaji(): Observable<Smestaj[]> {
-    return this._httpClient.get<any>(this.baseURL).pipe(map((data: any[]) => data.map((item: any) => this._createSmestajFromObject(item))),);
+   return this._httpClient.get<any>(this.baseURL).pipe(map((data: any[]) => data.map((item: any) => this._createSmestajFromObject(item))),);
   }
 
   //citanje nekog smestaja u tok podataka

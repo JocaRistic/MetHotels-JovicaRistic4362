@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Smestaj } from '../models/smestaj';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { SmestajCrudService } from '../services/smestaj-crud.service';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../store/state/app.state';
+import { Observable } from 'rxjs';
+import { selectedSmestaji } from '../store/selector/smestaj.selector';
+import { GetSmestaji } from '../store/actions/smestaj.actions';
+import { SmestajState } from '../store/state/smestaj.state';
 
 @Component({
   selector: 'app-smestaj',
@@ -9,18 +15,19 @@ import { SmestajCrudService } from '../services/smestaj-crud.service';
   styleUrls: ['./add-smestaj-form.component.css']
 })
 export class SmestajComponent implements OnInit{
-  listaSmestaja: Smestaj[];
+  
+  public smestaji$: Observable<Smestaj[]>;
+
   smestajForma: FormGroup;
 
-  constructor(private fb: FormBuilder, private _smestajCrudService: SmestajCrudService){
-    this._smestajCrudService.getSmestaji().subscribe(
-      (data) => this.listaSmestaja = data
-    );
+  constructor(private fb: FormBuilder, private _smestajCrudService: SmestajCrudService, private _store: Store<AppState>){
+    this.smestaji$ = this._store.pipe(select(selectedSmestaji));
   }
 
   ngOnInit(): void {
     this.createFormSmestaj();
     this.posmatranjeVrednosti();
+    this._store.dispatch(new GetSmestaji());
   }
 
   //kreiranje forme pomocu FormBuilder
@@ -50,7 +57,8 @@ export class SmestajComponent implements OnInit{
   //metod poziva funkciju za dodavanje novog smestaja u bazu iz servisa i dodaje smestaj u listu
   createSmestaj(smestaj: Smestaj) {
     this._smestajCrudService.createSmestaj(smestaj).subscribe((data) => {
-      this.listaSmestaja.push(data);
+      //this.listaSmestaja.push(data);
+      this._store.dispatch(new GetSmestaji());
       alert('Smestaj je uspesno dodat.');
     })
   }
@@ -58,15 +66,9 @@ export class SmestajComponent implements OnInit{
   //metod poziva funkciju za brisanje smestaja iz baze i ukoliko je obrisan poziva fju za brisanje smestaja iz liste
   deleteSmestaj(smestaj: Smestaj) {
     this._smestajCrudService.deleteSmestaj(smestaj.id).subscribe((data) => {
-      this.removeSmestajFromList(smestaj.id);
+      this._store.dispatch(new GetSmestaji());
       alert('Smestaj je uspesno obrisan');
     })
-  }
-
-  //brisanje smestaja iz liste
-  private removeSmestajFromList(id?: number) {
-    let ind = this.listaSmestaja.findIndex(smestaj => smestaj.id == id);
-    this.listaSmestaja.splice(ind, 1);
   }
 
   //proverava da li je broj
